@@ -31,6 +31,14 @@ export default function Home({ navigation }) {
           })
         }
       />
+      <Button
+        title="Update param"
+        onPress={() =>
+          navigation.setParams({
+            itemId: Math.floor(Math.random() * 100),
+          })
+        }
+      />
     </View>
   );
 }

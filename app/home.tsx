@@ -1,8 +1,11 @@
+import { useEffect } from "react";
 import { Text, View, StyleSheet, Platform, Button } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
     ...Platform.select({
       ios: {
         backgroundColor: "red",
@@ -18,10 +21,17 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Home({ navigation }) {
+export default function Home({ navigation, route }) {
+  useEffect(() => {
+    if (route.params?.post) {
+    }
+  }, [route.params?.post]);
+
   return (
     <View style={styles.container}>
       <Text>Home screen</Text>
+      <Text style={{ margin: 10 }}>Post: {route.params?.post}</Text>
+
       <Button
         title="Go to Details"
         onPress={() =>
@@ -32,12 +42,8 @@ export default function Home({ navigation }) {
         }
       />
       <Button
-        title="Update param"
-        onPress={() =>
-          navigation.setParams({
-            itemId: Math.floor(Math.random() * 100),
-          })
-        }
+        title="Create post"
+        onPress={() => navigation.navigate("CreatePost")}
       />
     </View>
   );

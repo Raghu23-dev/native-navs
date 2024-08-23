@@ -1,31 +1,35 @@
 import { Text, View, StyleSheet, Platform, Button } from "react-native";
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     ...Platform.select({
       ios: {
-        backgroundColor: 'red',
+        backgroundColor: "red",
       },
       android: {
-        backgroundColor: 'green',
+        backgroundColor: "green",
       },
       default: {
         // other platforms, web for example
-        backgroundColor: 'white',
+        backgroundColor: "white",
       },
     }),
   },
 });
 
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text >Home screen</Text>
+      <Text>Home screen</Text>
       <Button
         title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
+        onPress={() =>
+          navigation.navigate("Details", {
+            itemId: 86,
+            otherParam: "anything you want here",
+          })
+        }
       />
     </View>
   );

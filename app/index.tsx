@@ -13,7 +13,15 @@ const Stack = createNativeStackNavigator();
 export default function Index() {
   return (
     <NavigationContainer independent={true}>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Home"  screenOptions={{
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}>
         <Stack.Screen
           name="Home"
           component={Home}
@@ -24,12 +32,12 @@ export default function Index() {
           component={Details}
           initialParams={{ itemId: 42 }}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="CreatePost"
           component={CreatePostScreen}
-          options={{ title: "write mail" }}
+          options={({ route }) => ({ title: route.params.name })}
         />
-      </Stack.Navigator>
+      </Stack.Navigator >
     </NavigationContainer>
   );
 }
